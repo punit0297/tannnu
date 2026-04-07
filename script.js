@@ -1,69 +1,90 @@
-const friendName = "Bestie";
-const message = `Mubarak ho! 🎉 Aaj ka din mere liye bhi bohot special hai kyunki aaj aapka janamdin hai. 🌟
+// CONFIGURATION
+const name = "Bestu";
+const message = `Suno Bestu, Happy Birthday! 🎉 Aap mere liye sirf ek friend nahi, life ka sabse bada support system ho. Shukriya har us pal ke liye jab aapne mujhe hasaya. Main bas dua karta hoon ke aapka ye naya saal aapki hansi ki tarah sparkling aur magic se bhara ho! Hamesha aise hi rehna, bilkul original! ✨`;
 
-Aap jaise dost kismat se milte hain jo har pagalpan mein saath dein. Main bas yahi dua karta hoon ke aap hamesha aise hi muskurate rahein aur aapki zindagi mein dher saari khushiyan aur kamyabi aaye. Happy Birthday to my partner in crime! ❤️✨`;
-
-const openBtn = document.getElementById('open-btn');
+const activateBtn = document.getElementById('activate-btn');
 const landingScreen = document.getElementById('landing-screen');
 const mainContent = document.getElementById('main-content');
-const bgMusic = document.getElementById('bgMusic');
-const typingElement = document.getElementById('typing-text');
+const song = document.getElementById('birthdaySong');
+const typeMsg = document.getElementById('type-msg');
 
-// --- START SURPRISE ---
-openBtn.addEventListener('click', () => {
-    landingScreen.classList.add('hidden');
-    mainContent.classList.remove('hidden');
-    bgMusic.play();
-    bgMusic.volume = 0.5;
+// Star Generator
+function initStars() {
+    const field = document.getElementById('star-field');
+    for (let i = 0; i < 80; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 3 + 'px';
+        star.style.width = size;
+        star.style.height = size;
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.setProperty('--d', Math.random() * 3 + 2 + 's');
+        field.appendChild(star);
+    }
+}
+
+// Bubble Generator
+function initBubbles() {
+    const container = document.getElementById('bubbles');
+    setInterval(() => {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        const size = Math.random() * 40 + 10 + 'px';
+        bubble.style.width = size;
+        bubble.style.height = size;
+        bubble.style.left = Math.random() * 100 + 'vw';
+        container.appendChild(bubble);
+        setTimeout(() => bubble.remove(), 10000);
+    }, 1000);
+}
+
+initStars();
+initBubbles();
+
+// START SURPRISE
+activateBtn.addEventListener('click', () => {
+    song.play(); // FIX: Audio plays on click
+    landingScreen.style.opacity = '0';
     
-    // Start Star particles
-    setInterval(createSparkle, 500);
-    startTyping();
+    setTimeout(() => {
+        landingScreen.classList.add('hidden');
+        mainContent.classList.remove('hidden');
+        startTyping();
+        initScrollReveal();
+    }, 800);
 });
 
-// --- TYPING EFFECT ---
-let index = 0;
+// TYPEWRITER
+let i = 0;
 function startTyping() {
-    if (index < message.length) {
-        typingElement.innerHTML += message.charAt(index);
-        index++;
+    if (i < message.length) {
+        typeMsg.innerHTML += message.charAt(i);
+        i++;
         setTimeout(startTyping, 40);
     }
 }
 
-// --- STAR RAIN (Instead of Hearts) ---
-function createSparkle() {
-    const sparkle = document.createElement('div');
-    sparkle.innerHTML = '✨';
-    sparkle.className = 'sparkle';
-    sparkle.style.left = Math.random() * 100 + 'vw';
-    sparkle.style.top = '100vh';
-    sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
-    document.body.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 4000);
+// SCROLL REVEAL LOGIC
+function initScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-// --- SLIDER ---
-let currentSlide = 0;
-function changeSlide(n) {
-    const slides = document.querySelectorAll('.slide');
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-}
-
-// --- MUTE TOGGLE ---
+// MUTE
 document.getElementById('mute-btn').addEventListener('click', function() {
-    if (bgMusic.paused) {
-        bgMusic.play();
-        this.innerText = "🔊";
-    } else {
-        bgMusic.pause();
-        this.innerText = "🔈";
-    }
+    if (song.paused) { song.play(); this.innerText = "🔊"; }
+    else { song.pause(); this.innerText = "🔈"; }
 });
 
-// --- FINAL BUTTON ---
-document.getElementById('gift-btn').addEventListener('click', () => {
-    alert("Pizza party pending from my side! 🍕 Happy Birthday, Legend!");
+// DM GIFT BUTTON
+document.getElementById('dm-btn').addEventListener('click', () => {
+    alert("🎁 Surprise! Aapka asli birthday gift DM mein bhej diya hai (ya abhi bhej raha hoon). Jaldi se check karo! 📱");
 });

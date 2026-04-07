@@ -3,65 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Bestie! ✨</title>
+    <title>Surprise for Bestu ✨</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
 
-    <div class="bg-overlay"></div>
-    
-    <audio id="bgMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-buddy.mp3" type="audio/mpeg">
+    <div class="bg-stars" id="star-field"></div>
+    <div class="floating-bubbles" id="bubbles"></div>
+
+    <audio id="birthdaySong" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-memories.mp3" type="audio/mpeg">
     </audio>
 
     <div id="landing-screen" class="screen">
-        <div class="glass-card landing-box">
-            <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_myejig95.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-            <h1 class="soft-text">A Special Surprise for a Special Friend...</h1>
-            <button id="open-btn">Open the Magic ✨</button>
+        <div class="center-content">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_st458v9v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+            <h2 class="glow-msg">Taiyaar ho, Bestu? ✨</h2>
+            <button id="activate-btn">Magic Shuru Karo!</button>
         </div>
     </div>
 
     <main id="main-content" class="hidden">
+        
         <button id="mute-btn">🔊</button>
 
-        <section class="section">
-            <div class="hero-content">
-                <h1 class="main-title">Happy Birthday, <br><span class="highlight">Bestie!</span> 🎉</h1>
-                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_pkanwu92.json" background="transparent" speed="1" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
+        <section class="full-page">
+            <div class="hero-card reveal">
+                <h1 class="neon-title">Happy Birthday, <br><span class="bestu-name">Bestu!</span> 🎉</h1>
+                <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_u4yrau.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
             </div>
         </section>
 
-        <section class="section">
-            <div class="glass-card message-box">
-                <h2 class="gold-text">To Someone Special...</h2>
-                <p id="typing-text"></p>
+        <section class="full-page">
+            <div class="glass-card reveal">
+                <h3 class="message-header">Ek Choti si Baat...</h3>
+                <p id="type-msg"></p>
+                <span class="blink">_</span>
             </div>
         </section>
 
-        <section class="section">
-            <div class="gallery-container">
-                <h2 class="label">Our Golden Moments 📸</h2>
-                <div class="slider">
-                    <div class="slide active fade"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800" alt="Friendship"></div>
-                    <div class="slide fade"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800" alt="Fun"></div>
-                    <div class="slide fade"><img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=800" alt="Memories"></div>
-                    <div class="nav-btns">
-                        <button onclick="changeSlide(-1)">❮</button>
-                        <button onclick="changeSlide(1)">❯</button>
-                    </div>
-                </div>
+        <section class="full-page">
+            <div class="magic-jar reveal">
+                <div class="orb"></div>
+                <h2 class="jar-text">Hamari Dosti <br><span>Sabse Alag Hai!</span></h2>
+                <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_i9mxcD.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
             </div>
         </section>
 
-        <section class="section">
-            <div class="final-box">
-                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_kyu7xb1v.json" background="transparent" speed="1" style="width: 250px; height: 250px;" loop autoplay></lottie-player>
-                <h2 class="thanks-text">Duniya ki saari khushiyan aapko milein!</h2>
-                <button id="gift-btn">Claim Your Bestie Treat! 🍟</button>
+        <section class="full-page">
+            <div class="final-reveal reveal">
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_kyu7xb1v.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+                <h2 class="dm-text">Aapka Asli Gift...</h2>
+                <button id="dm-btn">Kahan Hai Gift? 🤔</button>
             </div>
         </section>
+
     </main>
 
     <script src="script.js"></script>
